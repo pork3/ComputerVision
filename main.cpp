@@ -2,6 +2,7 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
+#include "platform/DisplayWindow.hpp"
 
 int main(int argc, char** argv) {
 
@@ -13,7 +14,14 @@ int main(int argc, char** argv) {
         printf("No image data \n");
         return -1;
     }
+    std::string s = "billy";
+    DisplayWindow dw(s);
+    dw.ShowImage(image);
 
+
+
+
+    /*
     image.convertTo(image, CV_32F, 1/255.0);
     cv::Mat gx, gy;
     Sobel(image, gx, CV_32F, 1, 0, 1);
@@ -24,7 +32,7 @@ int main(int argc, char** argv) {
     namedWindow("Display Image", cv::WINDOW_NORMAL );
     imshow("Display Image", gy);
     imshow("djdjd", image);
-
+    */
     cv::waitKey(0);
     return 0;
 }

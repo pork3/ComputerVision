@@ -16,10 +16,13 @@ class DisplayWindow {
         };
 
         DisplayWindow(std::string& t, WindowResize resize_option = DYANMIC);
-        ~DisplayWindow();
+       // ~DisplayWindow();
+        void ShowImage(const cv::InputArray& ia);
 
     private:
         std::string title;
+        bool isopengl;
+
 
 };
 
