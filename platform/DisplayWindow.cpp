@@ -1,5 +1,10 @@
-//
-// Created by zach on 4/6/19.
-//
-
 #include "DisplayWindow.hpp"
+
+
+DisplayWindow::DisplayWindow(std::string& t, DisplayWindow::WindowResize resize_option): title(t) {
+
+}
+
+DisplayWindow::~DisplayWindow() {
+
+}

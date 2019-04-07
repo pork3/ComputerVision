@@ -21,7 +21,7 @@ int main(int argc, char** argv) {
     cv::Mat mag, angle;
     cartToPolar(gx, gy, mag, angle, 1);
 
-    namedWindow("Display Image", cv::WINDOW_AUTOSIZE );
+    namedWindow("Display Image", cv::WINDOW_NORMAL );
     imshow("Display Image", gy);
     imshow("djdjd", image);
 
