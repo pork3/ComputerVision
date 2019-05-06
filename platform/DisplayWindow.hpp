@@ -15,9 +15,9 @@ class DisplayWindow {
             OPENGL = cv::WINDOW_OPENGL
         };
 
-        DisplayWindow(std::string& t, WindowResize resize_option = DYANMIC);
-       // ~DisplayWindow();
-        void ShowImage(const cv::InputArray& ia);
+        DisplayWindow(std::string& t);
+
+        void ShowImage(const cv::Mat& m);
 
     private:
         std::string title;

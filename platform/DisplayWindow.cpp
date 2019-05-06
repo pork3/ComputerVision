@@ -1,20 +1,17 @@
 #include "DisplayWindow.hpp"
 
 
-DisplayWindow::DisplayWindow(std::string& t, DisplayWindow::WindowResize resize_option): title(t) {
+DisplayWindow::DisplayWindow(std::string& t) {
 
-    (resize_option == DisplayWindow::OPENGL) ? (this->isopengl = true) : (this->isopengl = false);
+    this->title = t;
 
+    cv::namedWindow(this->title);
 }
-/*
-DisplayWindow::~DisplayWindow() {
 
-    cv::destroyWindow(title);
-}
-*/
-void DisplayWindow::ShowImage(const cv::_InputArray& ia) {
 
-    cv::imshow(this->title, ia);
+void DisplayWindow::ShowImage(const cv::Mat& m) {
+
+    cv::imshow(this->title, m);
 }
 
 

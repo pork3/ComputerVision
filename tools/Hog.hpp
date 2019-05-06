@@ -12,17 +12,14 @@ public:
     void Process();
 
 
+
+
 private:
 
-    void ToGray();
 
 
-    int im_width;
-    int im_height;
-
-    int ker_width;
-    int ker_height;
-
+    cv::Mat get_hogdescriptor_visual_image(cv::Mat& origImg, std::vector<float>& descriptorValues,cv::Size winSize,
+                                           cv::Size cellSize, int scaleFactor, double viz_factor);
 
 };
 
