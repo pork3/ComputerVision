@@ -10,15 +10,15 @@
 class Hog {
 
 public:
-    Hog(const cv::Mat& i, bool d = false);
+    Hog(bool d = false);
 
     void SetDescriptor(bool b){this->show_descriptor = b;}
 
-    cv::Mat GetImage(){ return this->image; }
+    cv::Mat GetImage(){ return this->images; }
 
     cv::Mat GetDescriptorImage(){  return this->angles;}
 
-    void Process();
+    void Process(cv::Mat& image);
 
 
 
@@ -27,7 +27,7 @@ private:
 
     cv::HOGDescriptor hog;
 
-    cv::Mat image;
+    cv::Mat images;
     cv::Mat gray_image;
     cv::Mat angles;
     bool show_descriptor;

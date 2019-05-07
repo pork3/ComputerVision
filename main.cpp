@@ -11,23 +11,38 @@ int main(int argc, char** argv) {
 
     cv::Mat image;
 
-    image = cv::imread("monkey.jpg");
+    image = cv::imread("../monkey.jpg");
     std::string title = "Window";
     DisplayWindow dw(title);
 
-    Hog hog(image,true);
-    hog.Process();
-    hog.GetDescriptorImage();
 
-    dw.ShowImage(hog.GetDescriptorImage());
+    Hog hog(true);
 
 
+    cv::VideoCapture webcam(0);
+    cv::Mat webimage;
 
-    /*
-    cv::namedWindow("Display", cv::WINDOW_AUTOSIZE);
-    cv::imshow("Display", image);
-    */
-    cv::waitKey(0);
+    if ( webcam.isOpened() == false ){
+
+        std::cout << "Error with webcam " << std::endl;
+    }
+                                            /*press esc to quit*/
+    while(webcam.isOpened() && cv::waitKey(10)!= 27){
+
+        bool isread = webcam.read(webimage);
+        if ( isread){
+
+            hog.Process(webimage);
+
+            dw.ShowImage(hog.GetDescriptorImage());
+        }
+        else{
+
+            dw.ShowImage(image);
+        }
+
+
+    }
 
     return 0;
 };
