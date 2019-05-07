@@ -1,14 +1,38 @@
 #include <opencv2/imgproc.hpp>
 #include "Hog.hpp"
 
-Hog::Hog(cv::InputArray image) {
+Hog::Hog(const cv::Mat& i) {
+
+    image = i;
+    cvtColor(i, gray_image, cv::COLOR_BGR2GRAY);
+    show_descriptor = false;
+}
+
+void Hog::Process() {
+    /*error checking*/
+    if (countNonZero(this->image) < 1)
+        return;
+
+    cv::Mat dx, dy, mag;
+
+    std::vector<float> descriptorvalues;
+    std::vector<cv::Point> location;
+
+    hog.compute(gray_image, descriptorvalues, cv::Size(0,0), cv::Size(0,0), location);
+
+    if(show_descriptor){
+        this->angles = get_hogdescriptor_visual_image(gray_image,descriptorvalues, cv::Size( gray_image.size().width,
+                gray_image.size().height) , cv::Size(6,6) , 1, 2);
+
+    }
 
 
 }
 
+
 cv::Mat get_hogdescriptor_visual_image(cv::Mat& origImg, std::vector<float>& descriptorValues,cv::Size winSize,
-        cv::Size cellSize, int scaleFactor, double viz_factor)
-{
+        cv::Size cellSize, int scaleFactor, double viz_factor){
+
     cv::Mat visual_image;
     resize(origImg, visual_image, cv::Size(origImg.cols*scaleFactor, origImg.rows*scaleFactor));
 
