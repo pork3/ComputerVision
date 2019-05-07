@@ -5,6 +5,7 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include "platform/DisplayWindow.hpp"
+#include "tools/Hog.hpp"
 
 int main(int argc, char** argv) {
 
@@ -14,7 +15,13 @@ int main(int argc, char** argv) {
     std::string title = "Window";
     DisplayWindow dw(title);
 
-    dw.ShowImage(image);
+    Hog hog(image,true);
+    hog.Process();
+    hog.GetDescriptorImage();
+
+    dw.ShowImage(hog.GetDescriptorImage());
+
+
 
     /*
     cv::namedWindow("Display", cv::WINDOW_AUTOSIZE);

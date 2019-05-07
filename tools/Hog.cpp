@@ -1,11 +1,11 @@
 #include <opencv2/imgproc.hpp>
 #include "Hog.hpp"
 
-Hog::Hog(const cv::Mat& i) {
+Hog::Hog(const cv::Mat& i, bool d) {
 
     image = i;
     cvtColor(i, gray_image, cv::COLOR_BGR2GRAY);
-    show_descriptor = false;
+    show_descriptor = d;
 }
 
 void Hog::Process() {
@@ -23,16 +23,13 @@ void Hog::Process() {
     if(show_descriptor){
         this->angles = get_hogdescriptor_visual_image(gray_image,descriptorvalues, cv::Size( gray_image.size().width,
                 gray_image.size().height) , cv::Size(6,6) , 1, 2);
-
     }
 
 
 }
 
-
-cv::Mat get_hogdescriptor_visual_image(cv::Mat& origImg, std::vector<float>& descriptorValues,cv::Size winSize,
-        cv::Size cellSize, int scaleFactor, double viz_factor){
-
+cv::Mat Hog::get_hogdescriptor_visual_image(cv::Mat &origImg, std::vector<float> &descriptorValues, cv::Size winSize,
+                                            cv::Size cellSize, int scaleFactor, double viz_factor) {
     cv::Mat visual_image;
     resize(origImg, visual_image, cv::Size(origImg.cols*scaleFactor, origImg.rows*scaleFactor));
 

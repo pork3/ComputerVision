@@ -1,14 +1,16 @@
 #ifndef COMPUTERVISION_HOG_H
 #define COMPUTERVISION_HOG_H
 
-
 #include <opencv2/core/mat.hpp>
 #include <opencv2/opencv.hpp>
+#include <opencv2/opencv.hpp>
+#include <opencv2/highgui.hpp>
+#include <opencv2/imgproc.hpp>
 
 class Hog {
 
 public:
-    Hog(const cv::Mat& i);
+    Hog(const cv::Mat& i, bool d = false);
 
     void SetDescriptor(bool b){this->show_descriptor = b;}
 
